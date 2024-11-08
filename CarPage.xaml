@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SQLiteDemo.CarPage"
+             xmlns:local="clr-namespace:SQLiteDemo.MVVM.ViewModels"
+             Title="CarPage">
+    <ContentPage.BindingContext>
+        <local:CarPageViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Padding="10">
+        <Entry Placeholder="Model" Text="{Binding CurrentCar.Model}" BackgroundColor="#E491F47E"/>
+        <Entry Placeholder="Color" Text="{Binding CurrentCar.Color}" BackgroundColor="#FFAEF7FB"/>
+        <Button Text="Add or Update"
+                Command="{Binding AddOrUpdateCommand}" />
+        <Button Text="Delete"
+                Command="{Binding DeleteCommand}" />
+        <ListView ItemsSource="{Binding Cars}" 
+                  SelectedItem="{Binding CurrentCar}" 
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" Padding="5">
+                            <Label Text="{Binding ID}" FontAttributes="Bold" TextColor="Gray" />
+                            <Label Text="{Binding Model}" FontAttributes="Bold" TextColor="Gray" />
+                            <Label Text="{Binding Color}" TextColor="Gray" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
